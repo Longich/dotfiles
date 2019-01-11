@@ -8,15 +8,6 @@ set number
 
 augroup fileTypeIndent
   autocmd!
-  autocmd BufNewFile,BufRead *.rb setlocal tabstop=2 softtabstop=2 shiftwidth=2
+  autocmd BufNewFile,BufRead *.java setlocal tabstop=4 softtabstop=4 shiftwidth=4
 augroup END
 
-execute pathogen#infect()
-
-set nocompatible
-filetype off
-
-set rtp+=~/vimfiles/vundle.git/
-call vundle#rc()
-Bundle 'thinca/vim-ref'
-filetype plugin indent on "required!
