@@ -13,3 +13,9 @@ alias be='bundle exec'
 alias parent-branch='git show-branch | grep '\''*'\'' | grep -v '\"'$(git rev-parse --abbrev-ref HEAD)'\"' | head -1 | awk -F'\''[]~^[]'\'' '\''{print $2}'\'
 
 export EDITOR='cursor --wait'
+# local bin path (ex. claude)
+export PATH="$HOME/.local/bin:$PATH"
+
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
+
