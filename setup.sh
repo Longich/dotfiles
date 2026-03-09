@@ -55,4 +55,7 @@ info "Setting up dotfiles from $DOTFILES_DIR"
 link_file "$DOTFILES_DIR/.zshrc" "$HOME/.zshrc"
 create_zshrc_local
 
+mkdir -p "$HOME/.claude"
+link_file "$DOTFILES_DIR/.claude/settings.json" "$HOME/.claude/settings.json"
+
 info "Done!"
