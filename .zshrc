@@ -16,7 +16,7 @@ export EDITOR='cursor --wait'
 # local bin path (ex. claude, mise)
 export PATH="$HOME/.local/bin:$PATH"
 # mise
-export PATH="$HOME/.local/share/mise/shims:$PATH"
+eval "$(mise activate zsh)"
 
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
