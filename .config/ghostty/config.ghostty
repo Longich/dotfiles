@@ -1,0 +1,15 @@
+font-family = "Moralerspace Argon HW"
+font-family = "Hack Nerd Font Mono"
+font-family = "Noto Sans JP"
+
+cursor-style = block
+
+background-opacity = 0.85
+background-blur-radius = 20
+
+quick-terminal-screen = "mouse"
+quick-terminal-animation-duration = 0
+quick-terminal-size = 100%,100%
+
+# グローバルホットキーを設定
+keybind = "global:ctrl+i=toggle_quick_terminal"

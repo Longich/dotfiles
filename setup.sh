@@ -58,4 +58,7 @@ create_zshrc_local
 mkdir -p "$HOME/.claude"
 link_file "$DOTFILES_DIR/.claude/settings.json" "$HOME/.claude/settings.json"
 
+mkdir -p "$HOME/.config/ghostty"
+link_file "$DOTFILES_DIR/.config/ghostty/config.ghostty" "$HOME/.config/ghostty/config.ghostty"
+
 info "Done!"
