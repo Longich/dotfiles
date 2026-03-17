@@ -32,6 +32,35 @@ link_file() {
   success "Linked $dst -> $src"
 }
 
+# --- リダイレクトシンボリックリンク作成 ---
+# dotfiles外のパス同士をリンクする（例: Application Support → XDG config）
+redirect_link() {
+  local src="$1"
+  local dst="$2"
+
+  if [[ ! -e "$src" && ! -L "$src" ]]; then
+    info "Source does not exist: $src (will be created by link_file later)"
+  fi
+
+  if [[ -L "$dst" ]]; then
+    if [[ "$(readlink "$dst")" == "$src" ]]; then
+      skip "$dst already linked"
+      return
+    else
+      info "Relinking $dst"
+      ln -sf "$src" "$dst"
+    fi
+  elif [[ -f "$dst" ]]; then
+    info "Backing up existing $dst -> ${dst}.backup"
+    mv "$dst" "${dst}.backup"
+    ln -s "$src" "$dst"
+  else
+    ln -s "$src" "$dst"
+  fi
+
+  success "Linked $dst -> $src"
+}
+
 # --- .zshrc.local 作成 ---
 create_zshrc_local() {
   if [[ -f "$ZSHRC_LOCAL" ]]; then
@@ -60,5 +89,8 @@ link_file "$DOTFILES_DIR/.claude/settings.json" "$HOME/.claude/settings.json"
 
 mkdir -p "$HOME/.config/ghostty"
 link_file "$DOTFILES_DIR/.config/ghostty/config.ghostty" "$HOME/.config/ghostty/config.ghostty"
+
+mkdir -p "$HOME/Library/Application Support/com.mitchellh.ghostty"
+redirect_link "$HOME/.config/ghostty/config.ghostty" "$HOME/Library/Application Support/com.mitchellh.ghostty/config"
 
 info "Done!"
